@@ -56,7 +56,7 @@ export function Prompt({
       setFluxNodeStreamId(nodes, { id: promptNode.id, streamId: undefined })
     );
 
-    if (MIXPANEL_TOKEN) mixpanel.track("Stopped generating response");
+    // if (MIXPANEL_TOKEN) mixpanel.track("Stopped generating response");
   };
 
   /*//////////////////////////////////////////////////////////////
