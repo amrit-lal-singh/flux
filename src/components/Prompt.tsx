@@ -44,9 +44,16 @@ export function Prompt({
 
   const onMainButtonClick = () => {
     if (promptNodeType === FluxNodeType.User) {
-      submitPrompt();
+        submitPrompt();
+        if (MIXPANEL_TOKEN) {
+            mixpanel.track('Generate Response', {
+                'Temperature': settings.temp,
+                'No. of Responses': settings.n,
+                'Response Required': 'True'
+            });
+        }
     } else {
-      newConnectedToSelectedNode(FluxNodeType.User);
+        newConnectedToSelectedNode(FluxNodeType.User);
     }
   };
 
