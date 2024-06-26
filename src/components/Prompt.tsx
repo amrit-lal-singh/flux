@@ -43,11 +43,30 @@ export function Prompt({
   const promptNodeType = promptNode.data.fluxNodeType;
 
   const onMainButtonClick = () => {
+on
+[{
+    <<<< ORIGINAL
     if (promptNodeType === FluxNodeType.User) {
-      submitPrompt();
+        submitPrompt();
     } else {
-      newConnectedToSelectedNode(FluxNodeType.User);
+        newConnectedToSelectedNode(FluxNodeType.User);
     }
+    ====
+    if (promptNodeType === FluxNodeType.User) {
+        submitPrompt();
+        if (MIXPANEL_TOKEN) {
+            mixpanel.track('Generate Response', {
+                'Temperature': settings.temp,
+                'No. of Responses': settings.n,
+                'Response Required': 'True'
+            });
+        }
+    } else {
+        newConnectedToSelectedNode(FluxNodeType.User);
+    }
+    >>>> UPDATED
+}]
+``
   };
 
   const stopGenerating = () => {
