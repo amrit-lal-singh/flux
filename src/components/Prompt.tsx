@@ -42,13 +42,16 @@ export function Prompt({
 
   const promptNodeType = promptNode.data.fluxNodeType;
 
-  const onMainButtonClick = () => {
-    if (promptNodeType === FluxNodeType.User) {
-      submitPrompt();
-    } else {
-      newConnectedToSelectedNode(FluxNodeType.User);
+const onMainButtonClick = () => {
+    if (MIXPANEL_TOKEN) {
+        mixpanel.track('Generate Response', { 'Temperature': settings.temp, 'No. of Responses': settings.n, 'Response Required': 'True' });
     }
-  };
+    if (promptNodeType === FluxNodeType.User) {
+        submitPrompt();
+    } else {
+        newConnectedToSelectedNode(FluxNodeType.User);
+    }
+};
 
   const stopGenerating = () => {
     // Reset the stream id.
