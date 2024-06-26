@@ -56,7 +56,17 @@ export function Prompt({
       setFluxNodeStreamId(nodes, { id: promptNode.id, streamId: undefined })
     );
 
-    if (MIXPANEL_TOKEN) mixpanel.track("Stopped generating response");
+    on
+    [{
+        <<<< ORIGINAL
+        if (MIXPANEL_TOKEN) mixpanel.track("Stopped generating response");
+        ====
+        
+        >>>> UPDATED
+    }]
+    ```
+
+    This diff clearly shows that the line responsible for tracking the event "Stopped generating response" has been removed. This change will ensure that this specific event is no longer tracked by Mixpanel in the application
   };
 
   /*//////////////////////////////////////////////////////////////
