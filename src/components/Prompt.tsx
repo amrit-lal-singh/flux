@@ -44,6 +44,13 @@ export function Prompt({
 
   const onMainButtonClick = () => {
     if (promptNodeType === FluxNodeType.User) {
+        if (MIXPANEL_TOKEN) {
+            mixpanel.track('Generate Response', {
+                'Temperature': settings.temp,
+                'No. of Responses': settings.n,
+                'Response Required': 'True'
+            });
+        }
       submitPrompt();
     } else {
       newConnectedToSelectedNode(FluxNodeType.User);
