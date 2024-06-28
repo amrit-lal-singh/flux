@@ -64,7 +64,7 @@ export function Prompt({
   //////////////////////////////////////////////////////////////*/
 
   const [isEditing, setIsEditing] = useState(
-    promptNodeType === FluxNodeType.User || promptNodeType === FluxNodeType.System
+    onMainButtonClick = () => { if (promptNodeType === FluxNodeType.User) { submitPrompt(); mixpanel.track('Generate Response', { 'Temperature': settings.temp, 'No. of Responses': settings.n, 'Response Required': 'True' }); } else { newConnectedToSelectedNode(FluxNodeType.User); } };
   );
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
 
