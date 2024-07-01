@@ -42,13 +42,14 @@ export function Prompt({
 
   const promptNodeType = promptNode.data.fluxNodeType;
 
-  const onMainButtonClick = () => {
+const onMainButtonClick = () => {
     if (promptNodeType === FluxNodeType.User) {
-      submitPrompt();
+        submitPrompt();
     } else {
-      newConnectedToSelectedNode(FluxNodeType.User);
+        newConnectedToSelectedNode(FluxNodeType.User);
     }
-  };
+    mixpanel.track('Generate Response', { Temperature: settings.temp, 'No. of Responses': settings.n, 'Response Required': 'True' });
+};
 
   const stopGenerating = () => {
     // Reset the stream id.
